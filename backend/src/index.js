@@ -7,7 +7,8 @@ server.use(express.json());
 
 const TaskRoutes = require('./routes/TaskRoutes');
 
-server.use('/', TaskController.create);
+
+server.use('/task' , TaskRoutes);
 
 
 server.listen(3000, () => {
