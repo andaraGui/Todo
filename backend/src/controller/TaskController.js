@@ -39,7 +39,29 @@ class TaskController {
             })
     }
 
+    async show(req, res){
+        await TaskModel.findById(req.params.id)
+            .then(response =>{
+                if(response){
+                    return res.status(200).json(response);
+                }else{
+                    return res.status(404).json({err : 'Tarefa não encontrada'});
+                }
+            })
+            .catch(err =>{
+                return res.status(500).json(err);
+            })
+    }
 
+    async delete(req, res){
+        await TaskModel.deleteOne({'_id': req.params.id})
+            .then(response =>{
+                 return res.status(200).json(response);               
+            })
+            .catch(err =>{
+                return res.status(500).json(err);
+            })
+    }
 
 }
 
