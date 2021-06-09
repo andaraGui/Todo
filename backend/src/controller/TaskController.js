@@ -39,6 +39,7 @@ class TaskController {
             })
     }
 
+    //find a task by id
     async show(req, res){
         await TaskModel.findById(req.params.id)
             .then(response =>{
@@ -52,7 +53,8 @@ class TaskController {
                 return res.status(500).json(err);
             })
     }
-
+    
+    // delete a task by id
     async delete(req, res){
         await TaskModel.deleteOne({'_id': req.params.id})
             .then(response =>{
@@ -62,6 +64,25 @@ class TaskController {
                 return res.status(500).json(err);
             })
     }
+
+    //Set a task as Done
+    async done(req, res){
+        await TaskModel.findByIdAndUpdate(
+        {'_id': req.params.id},
+        {'done': req.params.done},
+        {new: true}
+        )
+            .then(response =>{
+                return res.status(200).json(response);
+            })
+            .catch(err =>{
+                return res.status(500).json(err);
+            })
+
+    }
+
+
+
 
 }
 
