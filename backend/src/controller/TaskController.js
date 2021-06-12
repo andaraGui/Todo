@@ -1,5 +1,8 @@
 const TaskModel = require('../model/TaskModel');
-const {startOfDay , endOfDay} = require('date-fns');
+const {startOfDay , endOfDay, 
+       startOfWeek, endOfWeek, 
+       startOfMonth, endOfMonth, 
+       startOfYear, endOfYear} = require('date-fns');
 const current = new Date();
 
 class TaskController {
@@ -82,7 +85,8 @@ class TaskController {
             })
 
     }
-    //Late tasks
+    
+    //Late tasks filter
     async late(req, res){
         await TaskModel
         .find({
@@ -99,11 +103,60 @@ class TaskController {
 
     }
 
+    //Today Tasks filter
     async today(req, res){
         await TaskModel
         .find({
             'macaddress': {'$in': req.body.macaddress},
             'when': {'$gte': startOfDay(current), '$lte': endOfDay(current)}
+        })
+        .sort('when')
+        .then(response =>{
+            return res.status(200).json(response);
+        })
+        .catch(error =>{
+            return res.status(500).json(error);
+        });
+    }
+
+    //week tasks filter
+    async week(req, res){
+        await TaskModel
+        .find({
+            'macaddress': {'$in': req.body.macaddress},
+            'when': {'$gte': startOfWeek(current), '$lte': endOfWeek(current)}
+        })
+        .sort('when')
+        .then(response =>{
+            return res.status(200).json(response);
+        })
+        .catch(error =>{
+            return res.status(500).json(error);
+        });
+    }
+
+    //Month tasks filter
+    async month(req, res){
+        await TaskModel
+        .find({
+            'macaddress': {'$in': req.body.macaddress},
+            'when': {'$gte': startOfMonth(current), '$lte': endOfMonth(current)}
+        })
+        .sort('when')
+        .then(response =>{
+            return res.status(200).json(response);
+        })
+        .catch(error =>{
+            return res.status(500).json(error);
+        });
+    }
+
+    //Year tasks filter
+    async year(req, res){
+        await TaskModel
+        .find({
+            'macaddress': {'$in': req.body.macaddress},
+            'when': {'$gte': startOfYear(current), '$lte': endOfYear(current)}
         })
         .sort('when')
         .then(response =>{
