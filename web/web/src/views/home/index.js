@@ -1,0 +1,8 @@
+
+function Home() {
+  return (
+    <h1>Você esta na home!</h1>
+  );
+}
+
+export default Home;
