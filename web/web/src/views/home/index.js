@@ -5,6 +5,8 @@ import * as S from './styles';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import FilterCard from '../../components/FilterCard';
+import TaskCard from '../../components/TaskCard';
+
 
 function Home() {
     const [filterActived, setFilterActived] = useState('today');
@@ -13,6 +15,7 @@ function Home() {
             <Header/>     
             
             <S.FilterArea>
+
                 <button type="button" onClick={ () => setFilterActived("all")} >
                 <   FilterCard title="Todos"   actived={filterActived === "all"} />
                 </button>
@@ -29,14 +32,29 @@ function Home() {
                     <FilterCard title="Ano"    actived={filterActived === "year"}/>
                 </button>
                 
-                
-                
-                
-                
             </S.FilterArea>
+           
+            <S.Title>
+                <h3>TAREFAS</h3>
+            </S.Title>
 
-            <Footer/>       
+            <S.Content>
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+            </S.Content>
+           
+
+                
         </S.Container> 
+        
     )
 }
 
