@@ -35,12 +35,19 @@ export const RightSide = styled.div`
         text-decoration: none;
         margin: 0 10px;
 
+        
+
         &:hover{
             color: #EE6B26;
         }
     }
+    
 
     #notification {
+        background:none;
+        border: none;
+        cursor: pointer;
+        
         img{
             width: 25px;
             weight: 30px;

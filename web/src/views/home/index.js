@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as S from './styles';
+
+//IMPORT AXIOS CONNECTION
+import api from '../../services/api';
 
 //COMPONENTES
 import Header from '../../components/Header';
@@ -9,10 +12,37 @@ import TaskCard from '../../components/TaskCard';
 
 
 function Home() {
-    const [filterActived, setFilterActived] = useState('today');
+    const [filterActived, setFilterActived] = useState('all');
+    const [tasks, setTasks] = useState([]);
+    const [lateCount , setLateCount] = useState();
+
+    async function loadTasks(){
+        await api.get(`/task/filter/${filterActived}/333.1.1.1.1.111.1`)
+            .then(response =>{
+                setTasks(response.data)
+            })
+    }
+
+    async function lateVerify(){
+        await api.get(`/task/filter/late/333.1.1.1.1.111.1`)
+            .then(response =>{
+                setLateCount(response.data.length);
+            })
+    }
+
+    function Notification(){
+        setFilterActived('late');
+    }
+
+    useEffect(() =>{
+        loadTasks();
+        lateVerify();
+    }, [filterActived])
+
+
     return (
         <S.Container>
-            <Header/>     
+            <Header lateCount={lateCount} clickNotification={Notification}/>     
             
             <S.FilterArea>
 
@@ -35,20 +65,15 @@ function Home() {
             </S.FilterArea>
            
             <S.Title>
-                <h3>TAREFAS</h3>
+                <h3>{filterActived === 'late' ? 'TAREVAS ATRASADAS' : 'TAREFAS'}</h3>
             </S.Title>
 
             <S.Content>
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
+                {
+                    tasks.map(t => (
+                        <TaskCard type={t.type} title={t.title} when={t.when} />
+                    ))
+                }
             </S.Content>
            
 
