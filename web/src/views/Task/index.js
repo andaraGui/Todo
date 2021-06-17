@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Redirect} from 'react-router-dom';
 import * as S from './styles';
 import {format} from 'date-fns';
 
@@ -13,8 +14,8 @@ import { set } from 'date-fns';
 
 
 function Task({match}) {
+    const [redirect, setRedirect] = useState(false);
     const [lateCount, setLateCount] = useState();
-
     const [type, setType] = useState();
     const [id, setId] = useState();
     const [done, setDone] = useState(false);
@@ -35,6 +36,7 @@ function Task({match}) {
         await api.get(`/task/${match.params.id}`)
             .then(response =>{
                 setType(response.data.type)
+                setDone(response.data.done)
                 setTitle(response.data.title)
                 setDescription(response.data.description)
                 setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
@@ -43,16 +45,41 @@ function Task({match}) {
     }
 
     async function Save(){
-        await api.post('/task', {
-            macaddress,
-            type,
-            title,
-            description,
-            when: `${date}T${hour}:00 .000` 
-        })
-            .then(() =>
-                alert('TREFA CADASTRADA COM SUCESSO')
-            )
+        //data validation
+
+        if(!title)
+            return alert('Você precisa informar o Título da tarefa');
+        else if(!description)
+            return alert('Você precisa informar a Descrição');
+        else if(!type)
+        return alert('Você precisa selecionar o tipo da tarefa');
+        else if(!date)
+            return alert('Você precisa definir a data da tarefa');
+        else if(!hour)
+        return alert('Você precisa definir a hora da tarefa');
+        
+        if(match.params.id){
+            await api.put(`/task/${match.params.id}`, {
+                macaddress,
+                done,
+                type,
+                title,
+                description,
+                when: `${date}T${hour}:00.000` 
+            }).then(() =>
+                    setRedirect(true)
+                )
+        }else{
+            await api.post('/task', {
+                macaddress,
+                type,
+                title,
+                description,
+                when: `${date}T${hour}:00.000` 
+            }).then(() =>
+                    setRedirect(true)
+                )
+        }
     }
 
     useEffect(() =>{
@@ -63,6 +90,7 @@ function Task({match}) {
 
     return (
         <S.Container>
+            {redirect && <Redirect to="/" />}
             <Header lateCount={lateCount}/>     
 
             <S.Form>
@@ -72,7 +100,7 @@ function Task({match}) {
                            index > 0 && 
                            <button type="button" onClick={() => setType(index)}>
                            <img src={icon} alt="Tipo da tarefa" 
-                           className={type && type !== index && 'inactive' }/>
+                           className={type && type !== index ? 'inactive' : 'active'}/>
                            </button>
                         ))
                     }

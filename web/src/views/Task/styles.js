@@ -18,6 +18,12 @@ export const TypeIcons = styled.div`
     display: flex;
     justify-content: center;
 
+    .active{
+        &:hover{
+            opacity: 1;
+        }
+    }
+
     .inactive{
         opacity: 0.5;
         &:hover{
