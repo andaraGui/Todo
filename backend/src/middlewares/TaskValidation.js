@@ -3,7 +3,7 @@ const { isPast } = require('date-fns');
 
 
 const TaskValidation = async (req, res, next) => {
-    const { macaddress, type, title, description, when } = req.body;
+    const { macaddress, type, title, description, when, done} = req.body;
 
     if (!macaddress) {
         return res.status(400).json({ error: 'Macaddress é obrigatório' });
@@ -15,8 +15,6 @@ const TaskValidation = async (req, res, next) => {
         return res.status(400).json({ error: 'Descrição é obrigatória' });
     } else if (!when) {
         return res.status(400).json({ error: 'Data de hora são obrigatórios' });
-    } else if (isPast(new Date(when))) {
-        return res.status(400).json({ error: 'Escolha uma data e hora futura' });
     } else {
         let exists;
         if (req.params.id) {
@@ -27,6 +25,9 @@ const TaskValidation = async (req, res, next) => {
                     'macaddress': { '$in': macaddress }
                 });
         } else {
+            if (isPast(new Date(when))) {
+                return res.status(400).json({ error: 'Escolha uma data e hora futura' });
+             }
             exists = await TaskModel
                 .findOne({
                     'when': { '$eq': new Date(when) },
