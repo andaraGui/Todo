@@ -37,7 +37,7 @@ function Header({ clickNotification }) {
             <S.RightSide>
                 <Link to="/">INÍCIO</Link>
                 <span className="dividor"></span>
-                <Link to="/task">NOVA TAREFA</Link>
+                <Link onClick={() => window.location.href = '/task'}>NOVA TAREFA</Link>
                 <span className="dividor"></span>
                 {!isConnected 
                 ?
