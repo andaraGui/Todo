@@ -29,11 +29,7 @@ function QrCode() {
             <Header/> 
 
             <S.Content>
-                <h1>CAPTURE O QRCODE PELO APP</h1>
-                <p>suas atividades serão sincronizadas com a do seu celular</p>
-                <S.QrCodeArea>
-                    <Qr value = 'getmacadress' size={350}/>
-                </S.QrCodeArea>
+                <h1>Digite seu nome completo</h1>
                 <S.ValidationCode>
                     <span>Digite a numeração que apareceu no seu celular</span>
                     <input type='text' onChange={e => setMac(e.target.value)} value={mac}/>

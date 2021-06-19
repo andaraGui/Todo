@@ -41,7 +41,7 @@ function Header({ clickNotification }) {
                 <span className="dividor"></span>
                 {!isConnected 
                 ?
-                <Link to="/qrcode">SINCRONIZAR CELULAR</Link> 
+                <Link to="/qrcode">ENTRAR</Link> 
                 :
                 <button type="button" onClick={logout}>SAIR</button>
                 }
