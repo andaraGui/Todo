@@ -40,9 +40,11 @@ export const ValidationCode = styled.div`
     }
 
     input{
+        width: 500px;
         font-size: 18px;
         padding: 10px;
         text-align: center;
+       
     }
 
     button{

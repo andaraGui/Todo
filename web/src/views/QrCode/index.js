@@ -31,7 +31,7 @@ function QrCode() {
             <S.Content>
                 <h1>Digite seu nome completo</h1>
                 <S.ValidationCode>
-                    <span>Digite a numeração que apareceu no seu celular</span>
+            
                     <input type='text' onChange={e => setMac(e.target.value)} value={mac}/>
                     <button type="button" onClick={SaveMac}>SINCRONIZAR</button>
                 </S.ValidationCode>
