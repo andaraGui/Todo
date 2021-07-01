@@ -1,4 +1,4 @@
-<h1 align="center">ToDo List</h1> 
+<h1 align="center">ToDo List</h1>  
 
 <h2 align="center">A ToDo list made with NodeJS, MongoDB and ReactJS.</h2>
 <br>
