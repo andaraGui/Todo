@@ -31,5 +31,5 @@
 </p><br><br>
 <h3 align="center">- Edit or Delete your tasks-</h3>
 <p align="center">
-  <img src="images/editar.JPG" />
+  <img src="images/editar.jpg" />
 </p>
