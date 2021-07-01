@@ -1,6 +1,6 @@
-<h1 align="center">user_Management</h1> 
+<h1 align="center">ToDo List</h1> 
 
-<h2 align="center">A ToDo list made in NodeJS, MongoDB and ReactJS.</h2>
+<h2 align="center">A ToDo list made with NodeJS, MongoDB and ReactJS.</h2>
 <br>
 <h2>How to run this Project</h2>
  <p>    - Clone the project</p>
@@ -21,15 +21,15 @@
 <br><br>
 
 
-<h3 align="center">- Show all users in DB -</h3>
+<h3 align="center">- Simple input to Store your data -</h3>
 <p align="center">
-  <img src="images/users.jpg" />
+  <img src="images/inicial.jpg" />
 </p><br><br>
-<h3 align="center">- Responsive Layout -</h3>
+<h3 align="center">- Show all your tasks or filter them by day, week, month or year -</h3>
 <p align="center">
-  <img src="images/responsive-users.jpg" />
+  <img src="images/listagem.jpg" />
 </p><br><br>
-<h3 align="center">- Add user Layout -</h3>
+<h3 align="center">- Edit or Delete your tasks-</h3>
 <p align="center">
-  <img src="images/add-user.JPG" />
+  <img src="images/editar.JPG" />
 </p>
