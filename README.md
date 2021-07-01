@@ -23,11 +23,11 @@
 
 <h3 align="center">- Simple input to Store your data -</h3>
 <p align="center">
-  <img src="images/inicial.jpg" />
+  <img src="images/inicial.JPG" />
 </p><br><br>
 <h3 align="center">- Show all your tasks or filter them by day, week, month or year -</h3>
 <p align="center">
-  <img src="images/listagem.jpg" />
+  <img src="images/listagem.JPG" />
 </p><br><br>
 <h3 align="center">- Edit or Delete your tasks-</h3>
 <p align="center">
